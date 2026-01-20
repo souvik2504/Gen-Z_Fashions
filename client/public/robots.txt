@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gen-zfashions.com/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /profile/
+Disallow: /orders/
+
+# Crawl delay
+Crawl-delay: 1
