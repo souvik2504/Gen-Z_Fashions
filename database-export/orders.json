@@ -1,0 +1,158 @@
+[
+  {
+    "_id": "695fae32c5a2ea7f7516acf7",
+    "user": "69522cca683f6e4478fca8f7",
+    "orderItems": [
+      {
+        "product": "695fadcfc5a2ea7f7516acba",
+        "name": "One-pice Tshirt",
+        "size": "M",
+        "color": "Purple",
+        "quantity": 1,
+        "price": 499,
+        "image": "/uploads/1767878095615-353873696.png",
+        "_id": "695fae32c5a2ea7f7516acf8"
+      }
+    ],
+    "loyaltyStampAdded": true,
+    "shippingAddress": {
+      "name": "Unknown",
+      "phone": "8420945422",
+      "street": "Fatickgachi, Siddheswar, Howrah",
+      "city": "Howrah",
+      "state": "West Bengal",
+      "zipCode": "711414",
+      "country": "India"
+    },
+    "paymentMethod": "razorpay",
+    "paymentResult": {
+      "id": "pay_S1OhvvE7O48HOC",
+      "status": "captured",
+      "update_time": "2026-01-08T13:16:36.392Z",
+      "email_address": "unknown20041217@gmail.com",
+      "razorpay_order_id": "order_S1OgxcZ4L4TXvU",
+      "method": "upi"
+    },
+    "totalPrice": 522.342,
+    "isPaid": true,
+    "paidAt": "2026-01-08T13:16:36.392Z",
+    "isDelivered": true,
+    "status": "delivered",
+    "couponCode": "A842C00A",
+    "razorpayOrderId": "order_S1OgxcZ4L4TXvU",
+    "razorpayPaymentId": "pay_S1OhvvE7O48HOC",
+    "returnStatus": null,
+    "refundMethod": "original_payment",
+    "refundStatus": null,
+    "createdAt": "2026-01-08T13:16:34.479Z",
+    "updatedAt": "2026-01-16T10:36:27.309Z",
+    "__v": 0,
+    "deliveredAt": "2026-01-09T06:39:15.693Z"
+  },
+  {
+    "_id": "6960ba8544a7c642c55c43f6",
+    "user": "69522cca683f6e4478fca8f7",
+    "orderItems": [
+      {
+        "product": "695fadcfc5a2ea7f7516acba",
+        "name": "One-pice Tshirt",
+        "size": "M",
+        "color": "Purple",
+        "quantity": 1,
+        "price": 499,
+        "image": "/uploads/1767878095615-353873696.png",
+        "_id": "6960ba8544a7c642c55c43f7"
+      }
+    ],
+    "loyaltyStampAdded": false,
+    "shippingAddress": {
+      "name": "Unknown",
+      "phone": "8420945422",
+      "street": "Fatickgachi, Siddheswar, Howrah",
+      "city": "Howrah",
+      "state": "West Bengal",
+      "zipCode": "711414",
+      "country": "India"
+    },
+    "paymentMethod": "razorpay",
+    "paymentResult": {
+      "id": "pay_S1iDG3qI2kIif6",
+      "status": "captured",
+      "update_time": "2026-01-09T08:21:25.899Z",
+      "email_address": "unknown20041217@gmail.com",
+      "razorpay_order_id": "order_S1iCGXCRd1Zhka",
+      "method": "upi"
+    },
+    "totalPrice": 580.38,
+    "isPaid": true,
+    "paidAt": "2026-01-09T08:21:25.899Z",
+    "isDelivered": true,
+    "status": "delivered",
+    "couponCode": null,
+    "razorpayOrderId": "order_S1iCGXCRd1Zhka",
+    "razorpayPaymentId": "pay_S1iDG3qI2kIif6",
+    "returnStatus": "approved",
+    "refundMethod": "original_payment",
+    "refundStatus": null,
+    "createdAt": "2026-01-09T08:21:25.094Z",
+    "updatedAt": "2026-01-12T12:08:12.697Z",
+    "__v": 0,
+    "deliveredAt": "2026-01-12T12:06:32.031Z",
+    "returnDetails": "I don't want it",
+    "returnReason": "Changed my mind",
+    "returnRequestedAt": "2026-01-12T12:07:13.647Z",
+    "returnApprovedAt": "2026-01-12T12:08:12.697Z"
+  },
+  {
+    "_id": "6960bba844a7c642c55c4486",
+    "user": "69522cca683f6e4478fca8f7",
+    "orderItems": [
+      {
+        "product": "695fadcfc5a2ea7f7516acba",
+        "name": "One-pice Tshirt",
+        "size": "S",
+        "color": "Purple",
+        "quantity": 1,
+        "price": 499,
+        "image": "/uploads/1767878095615-353873696.png",
+        "_id": "6960bba844a7c642c55c4487"
+      }
+    ],
+    "loyaltyStampAdded": false,
+    "shippingAddress": {
+      "name": "Unknown",
+      "phone": "8420945422",
+      "street": "Fatickgachi, Siddheswar, Howrah",
+      "city": "Howrah",
+      "state": "West Bengal",
+      "zipCode": "711414",
+      "country": "India"
+    },
+    "paymentMethod": "razorpay",
+    "paymentResult": {
+      "id": "pay_S1iIP2bDKiBix2",
+      "status": "captured",
+      "update_time": "2026-01-09T08:26:17.232Z",
+      "email_address": "unknown20041217@gmail.com",
+      "razorpay_order_id": "order_S1iFd4CFTzKhH2",
+      "method": "upi"
+    },
+    "totalPrice": 580.38,
+    "isPaid": true,
+    "paidAt": "2026-01-09T08:26:17.232Z",
+    "isDelivered": false,
+    "status": "cancelled",
+    "couponCode": null,
+    "razorpayOrderId": "order_S1iFd4CFTzKhH2",
+    "razorpayPaymentId": "pay_S1iIP2bDKiBix2",
+    "returnStatus": null,
+    "refundMethod": "original_payment",
+    "refundStatus": "pending",
+    "createdAt": "2026-01-09T08:26:16.408Z",
+    "updatedAt": "2026-01-09T08:26:45.768Z",
+    "__v": 0,
+    "cancellationDate": "2026-01-09T08:26:45.767Z",
+    "cancellationReason": "Changed my mind",
+    "refundInitiatedAt": "2026-01-09T08:26:45.767Z"
+  }
+]

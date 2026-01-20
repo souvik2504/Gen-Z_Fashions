@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "6960e8cc616c1700c724c341",
+    "user": "69522cca683f6e4478fca8f7",
+    "product": "695fadcfc5a2ea7f7516acba",
+    "order": "695fae32c5a2ea7f7516acf7",
+    "orderItem": "695fae32c5a2ea7f7516acf8",
+    "rating": 5,
+    "title": "goo",
+    "comment": "good",
+    "images": [],
+    "size": "M",
+    "color": "Purple",
+    "isVerifiedPurchase": true,
+    "helpfulVotes": 0,
+    "votedBy": [],
+    "createdAt": "2026-01-09T11:38:52.259Z",
+    "updatedAt": "2026-01-09T11:38:52.259Z",
+    "__v": 0
+  }
+]

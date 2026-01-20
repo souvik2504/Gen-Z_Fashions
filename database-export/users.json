@@ -1,0 +1,48 @@
+[
+  {
+    "_id": "69522cca683f6e4478fca8f7",
+    "name": "Unknown",
+    "email": "unknown20041217@gmail.com",
+    "phone": "",
+    "googleId": "people/109965193079001003850",
+    "role": "admin",
+    "profileAddress": "",
+    "loyalty": {
+      "stamps": 1,
+      "cyclesCompleted": 1,
+      "loyaltyLevel": "Bronze",
+      "hasReceivedWelcomeCoupon": true,
+      "claimedCoupons": [
+        {
+          "code": "A842C00A",
+          "surprise": "10% off on your first order",
+          "claimedAt": "2025-12-29T07:24:58.451Z",
+          "expiresAt": "2026-01-29T07:24:58.451Z",
+          "_id": "69522cca683f6e4478fca8fb",
+          "appliedAt": "2026-01-08T13:15:16.548Z",
+          "usedAt": "2026-01-08T13:16:36.398Z"
+        },
+        {
+          "code": "GZJX5PUGVS",
+          "surprise": "₹200 off on orders above ₹800",
+          "claimedAt": "2026-01-09T08:29:45.276Z",
+          "expiresAt": "2026-01-29T08:29:45.276Z",
+          "_id": "6960bc7944a7c642c55c44c7"
+        }
+      ],
+      "loyaltyHistory": [
+        {
+          "cycle": 1,
+          "rewardType": "₹200 off on orders above ₹800",
+          "code": "GZJX5PUGVS",
+          "claimedAt": "2026-01-09T08:29:45.276Z",
+          "_id": "6960bc7944a7c642c55c44c8"
+        }
+      ]
+    },
+    "cart": [],
+    "createdAt": "2025-12-29T07:24:58.414Z",
+    "updatedAt": "2026-01-16T10:36:27.276Z",
+    "__v": 2
+  }
+]

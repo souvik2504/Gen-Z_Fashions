@@ -1,0 +1,106 @@
+[
+  {
+    "_id": "695fadcfc5a2ea7f7516acba",
+    "name": "One-pice Tshirt",
+    "description": "Cotton blend T-shirt",
+    "price": 499,
+    "category": "unisex",
+    "variants": [
+      {
+        "size": "S",
+        "color": "Purple",
+        "stock": 9,
+        "_id": "695fadcfc5a2ea7f7516acbb"
+      },
+      {
+        "size": "M",
+        "color": "Purple",
+        "stock": 7,
+        "_id": "695fadcfc5a2ea7f7516acbc"
+      },
+      {
+        "size": "L",
+        "color": "Purple",
+        "stock": 15,
+        "_id": "695fadcfc5a2ea7f7516acbd"
+      }
+    ],
+    "availableColors": [
+      "Purple"
+    ],
+    "availableSizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "images": [
+      "/uploads/1767878095615-353873696.png"
+    ],
+    "featured": false,
+    "reviews": [],
+    "rating": 5,
+    "numReviews": 1,
+    "reviewStats": {
+      "fiveStar": 1,
+      "fourStar": 0,
+      "threeStar": 0,
+      "twoStar": 0,
+      "oneStar": 0
+    },
+    "createdAt": "2026-01-08T13:14:55.646Z",
+    "updatedAt": "2026-01-09T11:38:52.281Z",
+    "__v": 0
+  },
+  {
+    "_id": "6966329a3da81fc80f5e15d4",
+    "name": "Marvel T-shirt",
+    "description": "Black Color cotton blend t-shirt.",
+    "price": 499,
+    "category": "kids",
+    "variants": [
+      {
+        "size": "S",
+        "color": "Black",
+        "stock": 10,
+        "_id": "6966329a3da81fc80f5e15d5"
+      },
+      {
+        "size": "M",
+        "color": "Black",
+        "stock": 10,
+        "_id": "6966329a3da81fc80f5e15d6"
+      },
+      {
+        "size": "L",
+        "color": "Black",
+        "stock": 10,
+        "_id": "6966329a3da81fc80f5e15d7"
+      }
+    ],
+    "availableColors": [
+      "Black"
+    ],
+    "availableSizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "images": [
+      "/uploads/1768305306524-117381798.webp"
+    ],
+    "featured": true,
+    "reviews": [],
+    "rating": 0,
+    "numReviews": 0,
+    "reviewStats": {
+      "fiveStar": 0,
+      "fourStar": 0,
+      "threeStar": 0,
+      "twoStar": 0,
+      "oneStar": 0
+    },
+    "createdAt": "2026-01-13T11:55:06.567Z",
+    "updatedAt": "2026-01-13T11:55:06.567Z",
+    "__v": 0
+  }
+]
