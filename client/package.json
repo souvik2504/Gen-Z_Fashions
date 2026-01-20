@@ -22,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-     "generate-sitemap": "node scripts/generate-sitemap.js"
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "postinstall": "npm install --legacy-peer-deps"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
