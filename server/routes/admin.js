@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Product = require('../models/Product');
 const Order = require('../models/Order');
-const User = require('../models/User');
+const User = require('../models/user');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const multer = require('multer');
@@ -435,7 +435,7 @@ router.put('/orders/:id/status', [auth, admin], async (req, res) => {
 
     // 🔥 FIXED: Email sending with proper variable handling
     try {
-      const User = require('../models/User');
+      const User = require('../models/user');
       const user = await User.findById(order.user);
       
       if (user && user.email) {
@@ -560,7 +560,7 @@ router.put('/orders/:id/delivery', [auth, admin], async (req, res) => {
     // 🔥 ADD: Send delivered email when marking as delivered
     if (isDelivered && !wasDelivered) {
       try {
-        const User = require('../models/User');
+        const User = require('../models/user');
         const user = await User.findById(order.user);
         
         if (user && user.email) {
@@ -742,7 +742,7 @@ router.put('/orders/:id/return-status', [auth, admin], async (req, res) => {
 
     // 🔥 NEW: Send emails based on status change
     try {
-      const User = require('../models/User');
+      const User = require('../models/user');
       const user = await User.findById(order.user);
       
       if (user && user.email) {
@@ -858,7 +858,7 @@ router.put('/orders/:id/process-refund', [auth, admin], async (req, res) => {
 
     // 🔥 NEW: Send refund processing email
     try {
-      const User = require('../models/User');
+      const User = require('../models/user');
       const user = await User.findById(order.user);
       
       if (user && user.email) {
@@ -940,7 +940,7 @@ router.put('/orders/:id/complete-refund', [auth, admin], async (req, res) => {
 
     // 🔥 FIXED: Send refund completed email with proper refundAmount
     try {
-      const User = require('../models/User');
+      const User = require('../models/user');
       const user = await User.findById(order.user);
       
       if (user && user.email) {

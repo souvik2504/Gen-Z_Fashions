@@ -4,7 +4,7 @@ const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 const Notification = require("../models/Notification");
 const Product = require("../models/Product");
-const User = require("../models/User");
+const User = require("../models/user");
 const { sendBackInStockEmail } = require("../utils/emailService");
 
 // POST /api/notify-me - Subscribe for notifications

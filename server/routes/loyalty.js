@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const User = require('../models/User');
+const User = require('../models/user');
 const generateCouponCode = require('../utils/generateCouponCode');
 const Surprise = require('../models/Surprise');
 const { getRandomCoupon, rarityDisplay } = require('../utils/couponSelector'); // 🔥 NEW: Import rarity system

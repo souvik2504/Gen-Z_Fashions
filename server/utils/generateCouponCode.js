@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const User = require('../models/User');
+const User = require('../models/user');
 
 async function generateCouponCode(length = 8) {
   let code = '';

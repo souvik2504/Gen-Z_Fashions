@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
-const User = require('../models/User');
+const User = require('../models/user');
 const auth = require('../middleware/auth');
 const generateToken = require('../utils/generateToken');
 const grantWelcomeCoupon = require('../utils/welcomeCoupon');

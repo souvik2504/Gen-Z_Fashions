@@ -53,7 +53,7 @@ router.post('/cod-order', auth, async (req, res) => {
     // If a couponCode was used, mark it as 'used' ONLY AFTER confirming order is created,
     // This ensures coupon remains valid until order is placed.
     if (couponCode) {
-      const User = require('../models/User'); // safely import User model
+      const User = require('../models/user'); // safely import User model
       const user = await User.findById(req.userId);
 
       if (user && user.loyalty && Array.isArray(user.loyalty.claimedCoupons)) {

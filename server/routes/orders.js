@@ -162,7 +162,7 @@ router.post("/", auth, async (req, res) => {
     if (couponCode && paymentMethod === "cod") {
       console.log(`🔧 STARTING COD coupon marking for ${couponCode}`);
 
-      const User = require("../models/User");
+      const User = require("../models/user");
       const user = await User.findById(req.userId);
 
       console.log("6. User found?", !!user);
@@ -222,7 +222,7 @@ router.post("/", auth, async (req, res) => {
     }
 
     try {
-      const User = require("../models/User");
+      const User = require("../models/user");
       const user = await User.findById(req.userId);
 
       if (user && user.email) {
@@ -395,7 +395,7 @@ router.put("/:id/pay", auth, async (req, res) => {
 
     if (order.couponCode) {
       // Load user to update coupon usage
-      const User = require("../models/User"); // require here to avoid circular import if needed
+      const User = require("../models/user"); // require here to avoid circular import if needed
       const user = await User.findById(order.user);
 
       console.log("User found:", !!user);
@@ -444,7 +444,7 @@ router.put("/:id/pay", auth, async (req, res) => {
 
     // 🔥 NEW: Send order confirmation email for paid orders
     try {
-      const User = require("../models/User");
+      const User = require("../models/user");
       const user = await User.findById(order.user);
 
       if (user && user.email) {
@@ -522,7 +522,7 @@ router.put("/:id/cancel", auth, async (req, res) => {
 
     // Send cancellation email
     try {
-      const User = require("../models/User");
+      const User = require("../models/user");
       const user = await User.findById(order.user);
 
       if (user && user.email) {
@@ -608,7 +608,7 @@ router.put("/:id/cancel", auth, async (req, res) => {
 
 //     // 🔥 FIXED: Email sending process
 //     try {
-//       const User = require("../models/User");
+//       const User = require("../models/user");
 //       const user = await User.findById(order.user);
 
 //       console.log("🔍 Looking for user:", order.user);
@@ -704,7 +704,7 @@ router.put("/:id/cancel", auth, async (req, res) => {
 
 //     // 🔥 FIXED: Email sending process
 //     try {
-//       const User = require("../models/User");
+//       const User = require("../models/user");
 //       const user = await User.findById(order.user);
 
 //       console.log("🔍 Looking for user:", order.user);
@@ -844,7 +844,7 @@ router.put("/:id/return", auth, async (req, res) => {
 
     // 🔥 NEW: Send return request confirmation email
     try {
-      const User = require('../models/User');
+      const User = require('../models/user');
       const user = await User.findById(order.user);
       
       if (user && user.email) {

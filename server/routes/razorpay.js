@@ -177,7 +177,7 @@ router.post("/verify-payment", auth, async (req, res) => {
         console.log("=== MARKING COUPON AS USED ===");
         console.log("Coupon code from order:", order.couponCode);
 
-        const User = require("../models/User");
+        const User = require("../models/user");
         const user = await User.findById(order.user);
 
         if (
