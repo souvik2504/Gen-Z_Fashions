@@ -1,6 +1,6 @@
 const express = require("express");
 const RazorpayService = require("../services/razorpayService");
-const Order = require("../models/Order");
+const Order = require("../models/order");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 
