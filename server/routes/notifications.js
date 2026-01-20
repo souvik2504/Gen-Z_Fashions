@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 const Notification = require("../models/Notification");
-const Product = require("../models/Product");
+const Product = require("../models/product");
 const User = require("../models/user");
 const { sendBackInStockEmail } = require("../utils/emailService");
 

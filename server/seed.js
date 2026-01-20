@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const Product = require('./models/Product');
+const Product = require('./models/product');
 
 dotenv.config();                 // loads .env
 const MONGODB_URI = process.env.MONGODB_URI;

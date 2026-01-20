@@ -1,6 +1,6 @@
 const express = require('express');
 const Review = require('../models/Review');
-const Product = require('../models/Product');
+const Product = require('../models/product');
 const Order = require('../models/Order');
 const auth = require('../middleware/auth');
 const multer = require('multer');

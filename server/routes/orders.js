@@ -108,7 +108,7 @@ router.post("/", auth, async (req, res) => {
 
     const savedOrder = await order.save();
 
-    const Product = require('../models/Product');
+    const Product = require('../models/product');
 
     // 🔥 NEW: Variant-based stock reduction
     await Promise.all(order.orderItems.map(async (item) => {
