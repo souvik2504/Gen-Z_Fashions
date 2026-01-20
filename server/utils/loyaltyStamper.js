@@ -1,5 +1,5 @@
 const Order = require('../models/order');
-const User = require('../models/User');
+const User = require('../models/user');
 
 async function stampEligibleOrders() {
   const now = new Date();
