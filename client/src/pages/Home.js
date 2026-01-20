@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import API from "../api.js";
 import { useAuth } from "../contexts/AuthContext";
 import WelcomeModal from "../components/WelcomeModal";
 import ProductCard from "../components/ProductCard";
@@ -22,7 +22,7 @@ const Home = () => {
   try {
     setLoading(true);
     // 🔥 FIX: Use the dedicated featured endpoint
-    const response = await axios.get("/api/products/featured?limit=8");
+    const response = await API.get("/api/products/featured?limit=8");
     console.log('Featured products response:', response.data); // Debug log
     setFeaturedProducts(response.data); // No need for .products since /featured returns array directly
   } catch (error) {

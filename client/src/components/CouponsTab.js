@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../api.js";
 import toast from "react-hot-toast";
 import { Copy, CheckCircle, XCircle } from "lucide-react";
 
@@ -15,7 +15,7 @@ const CouponsTab = () => {
   const fetchCoupons = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/loyalty/status", {
+      const response = await API.get("/api/loyalty/status", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       

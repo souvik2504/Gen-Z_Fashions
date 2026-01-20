@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import API from "../api.js";
 import toast from "react-hot-toast";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
@@ -101,7 +101,7 @@ const Checkout = () => {
 
     setApplyingCoupon(true);
     try {
-      const res = await axios.post(
+      const res = await API.post(
         "/api/coupons/apply",
         {
           code: couponCode.trim(),
@@ -137,7 +137,7 @@ const Checkout = () => {
   useEffect(() => {
     const fetchLoyalty = async () => {
       try {
-        const res = await axios.get("/api/loyalty/status", {
+        const res = await API.get("/api/loyalty/status", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setLoyaltyStamps(res.data.stamps || 0);
@@ -280,7 +280,7 @@ const Checkout = () => {
     setLoading(true);
 
     // 🔥 STEP 1: Create ONLY Razorpay order (NO database order yet)
-    const razorpayResponse = await axios.post("/api/razorpay/create-order", {
+    const razorpayResponse = await API.post("/api/razorpay/create-order", {
       amount: finalTotalAmount, // Remove orderId from here
       customerInfo: {
         name: shippingInfo.name,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../../api.js";
 import toast from "react-hot-toast";
 import {
   Upload,
@@ -63,7 +63,7 @@ const AdminSettingsContent = () => {
   const fetchBanners = async () => {
     setLoadingBanners(true);
     try {
-      const response = await axios.get("/api/banners/admin", {
+      const response = await API.get("/api/banners/admin", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setBanners(response.data);
@@ -106,7 +106,7 @@ const AdminSettingsContent = () => {
       formData.append("linkUrl", uploadForm.linkUrl);
       formData.append("order", uploadForm.order);
 
-      await axios.post("/api/banners", formData, {
+      await API.post("/api/banners", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -125,7 +125,7 @@ const AdminSettingsContent = () => {
   // Toggle banner active/inactive status
   const toggleBannerStatus = async (bannerId, currentStatus) => {
     try {
-      await axios.put(
+      await API.put(
         `/api/banners/${bannerId}`,
         { isActive: !currentStatus },
         {
@@ -152,7 +152,7 @@ const AdminSettingsContent = () => {
       return;
 
     try {
-      await axios.delete(`/api/banners/${bannerId}`, {
+      await API.delete(`/api/banners/${bannerId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       toast.success("Banner deleted successfully");
@@ -167,7 +167,7 @@ const AdminSettingsContent = () => {
   const fetchSurprises = async () => {
     setLoadingSurprises(true);
     try {
-      const res = await axios.get("/api/surprises/admin", {
+      const res = await API.get("/api/surprises/admin", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setSurprises(res.data);
@@ -184,7 +184,7 @@ const AdminSettingsContent = () => {
     if (!newSurprise.trim()) return;
 
     try {
-      await axios.post(
+      await API.post(
         "/api/surprises",
         { description: newSurprise.trim() },
         {
@@ -203,7 +203,7 @@ const AdminSettingsContent = () => {
   // Toggle surprise active state
   const toggleSurprise = async (id, currentActive) => {
     try {
-      await axios.put(
+      await API.put(
         `/api/surprises/${id}`,
         { active: !currentActive },
         {
@@ -230,7 +230,7 @@ const AdminSettingsContent = () => {
       return;
 
     try {
-      await axios.delete(`/api/surprises/${id}`, {
+      await API.delete(`/api/surprises/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       toast.success("Surprise deleted successfully");

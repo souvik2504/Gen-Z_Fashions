@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import API from "../api.js";
 import toast from "react-hot-toast";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
@@ -115,7 +115,7 @@ const ProductDetail = () => {
   const fetchProduct = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/products/${id}`);
+      const response = await API.get(`/api/products/${id}`);
       setProduct(response.data);
 
       console.log('🔍 Product data:', response.data);
@@ -172,7 +172,7 @@ const ProductDetail = () => {
   const fetchRelatedProducts = async () => {
     try {
       console.log("Related products requested for product ID:", id);
-      const response = await axios.get(`/api/products/${id}/related`);
+      const response = await API.get(`/api/products/${id}/related`);
       setRelatedProducts(response.data);
     } catch (error) {
       console.error("Error fetching related products:", error);
@@ -181,7 +181,7 @@ const ProductDetail = () => {
 
   const checkWishlistStatus = async () => {
     try {
-      const response = await axios.get(`/api/wishlist/check/${id}`, {
+      const response = await API.get(`/api/wishlist/check/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setInWishlist(response.data.inWishlist);
@@ -200,13 +200,13 @@ const ProductDetail = () => {
     setWishlistLoading(true);
     try {
       if (inWishlist) {
-        await axios.delete(`/api/wishlist/${id}`, {
+        await API.delete(`/api/wishlist/${id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setInWishlist(false);
         toast.success("Removed from wishlist");
       } else {
-        await axios.post(
+        await API.post(
           "/api/wishlist",
           { productId: id },
           {
