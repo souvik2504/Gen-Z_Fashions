@@ -527,23 +527,31 @@ const Orders = () => {
                 {/* Order Items with Review Options */}
                 <div className="border-t dark:border-gray-700 pt-4 mb-4">
                   <div className="space-y-4">
-                    {order.orderItems.map((item, index) => (
-                      <div key={index} className="flex items-center justify-between bg-gray-200 dark:bg-gray-700 p-4 rounded-lg">
+                    {order.orderItems.map((item ) => (
+                      <div key={item._id || Math.random()} className="flex items-center justify-between bg-gray-200 dark:bg-gray-700 p-4 rounded-lg">
                         <div className="flex items-center space-x-3">
                           <div className="flex-shrink-0 w-16 h-16 bg-gray-100 dark:bg-gray-600 rounded overflow-hidden">
-                            <Link 
-                              to={`/products/${item.product._id}`}
-                              className="block w-full h-full hover:opacity-80 transition-opacity duration-200"
-                            >
+                            {item.product?._id ? (
+                              <Link 
+                                to={`/products/${item.product._id}`}
+                                className="block w-full h-full hover:opacity-80 transition-opacity duration-200"
+                              >
+                                <img
+                                  src={item.image || '/placeholder-tshirt.jpg'}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover cursor-pointer"
+                                  onError={(e) => (e.target.src = '/placeholder-tshirt.jpg')}
+                                />
+                              </Link>
+                            ) : (
                               <img
                                 src={item.image || '/placeholder-tshirt.jpg'}
                                 alt={item.name}
-                                className="w-full h-full object-cover cursor-pointer"
-                                onError={(e) => {
-                                  e.target.src = '/placeholder-tshirt.jpg';
-                                }}
+                                className="w-full h-full object-cover opacity-60 cursor-not-allowed"
+                                title="Product no longer available"
+                                onError={(e) => (e.target.src = '/placeholder-tshirt.jpg')}
                               />
-                            </Link>
+                            )}
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="font-medium text-gray-800 dark:text-white truncate">
