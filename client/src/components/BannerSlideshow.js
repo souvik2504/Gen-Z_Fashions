@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../api.js';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const BannerSlideshow = () => {
@@ -24,8 +24,8 @@ const BannerSlideshow = () => {
   const fetchBanners = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/banners');
-      setBanners(response.data);
+      const response = await API.get('/api/banners');
+      setBanners(response.data || []);
     } catch (error) {
       console.error('Error fetching banners:', error);
     } finally {
@@ -53,7 +53,7 @@ const BannerSlideshow = () => {
     );
   }
 
-  if (banners.length === 0) {
+  if (!Array.isArray(banners) || banners.length === 0) {
     return (
       <div className="w-full h-64 md:h-50 lg:h-66 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
         <div className="text-center text-white">
@@ -89,7 +89,6 @@ const BannerSlideshow = () => {
                 <h3 className="text-xl md:text-2xl font-bold mb-2">{banner.title}</h3>
               </div>
             </div>
-          // </div>
         ))}
       </div>
 
