@@ -40,106 +40,118 @@ import AdminNotifications from './pages/admin/AdminNotifications';
 function App() {
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-  return (
+  // Don't render GoogleOAuthProvider if client ID is missing
+  if (!googleClientId) {
+    console.warn('Google Client ID is missing. Google OAuth will be disabled.');
+  }
+
+  const AppContent = () => (
     <HelmetProvider>
       <SEOProvider>
-        <GoogleOAuthProvider clientId={googleClientId}>
-          <ThemeProvider>
-            <AuthProvider>
-              <CartProvider>
-                <Router>
-                  <ScrollToTop />
-                  <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-                    <Navbar />
-                    <main className="container mx-auto px-4 pt-0">
-                      <Routes>
-                        {/* Public routes */}
-                        <Route path="/" element={<Home />} />
-                        <Route path="/products" element={<Products />} />
-                        <Route
-                          path="/products/:id"
-                          element={<ProductDetail />}
-                        />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/checkout" element={<Checkout />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/orders" element={<Orders />} />
-                        <Route path="/wishlist"element={<Wishlist />} />
-                        <Route path="/about" element={<AboutUs />} /> 
-                        <Route path="/faq" element={<FAQ />} />
-                        <Route path="/size-guide" element={<SizeGuide />} />
+        <ThemeProvider>
+          <AuthProvider>
+            <CartProvider>
+              <Router>
+                <ScrollToTop />
+                <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+                  <Navbar />
+                  <main className="container mx-auto px-4 pt-0">
+                    <Routes>
+                      {/* Public routes */}
+                      <Route path="/" element={<Home />} />
+                      <Route path="/products" element={<Products />} />
+                      <Route
+                        path="/products/:id"
+                        element={<ProductDetail />}
+                      />
+                      <Route path="/cart" element={<Cart />} />
+                      <Route path="/checkout" element={<Checkout />} />
+                      <Route path="/login" element={<Login />} />
+                      <Route path="/register" element={<Register />} />
+                      <Route path="/profile" element={<Profile />} />
+                      <Route path="/orders" element={<Orders />} />
+                      <Route path="/wishlist"element={<Wishlist />} />
+                      <Route path="/about" element={<AboutUs />} /> 
+                      <Route path="/faq" element={<FAQ />} />
+                      <Route path="/size-guide" element={<SizeGuide />} />
 
-                        {/* Admin routes */}
-                        <Route
-                          path="/admin"
-                          element={
-                            <AdminRoute>
-                              <AdminDashboard />
-                            </AdminRoute>
-                          }
-                        />
-                        <Route
-                          path="/admin/products"
-                          element={
-                            <AdminRoute>
-                              <AdminProducts />
-                            </AdminRoute>
-                          }
-                        />
-                        <Route
-                          path="/admin/orders"
-                          element={
-                            <AdminRoute>
-                              <AdminOrders />
-                            </AdminRoute>
-                          }
-                        />
-                        <Route path="/admin/notifications" element={<AdminRoute> <AdminNotifications /></AdminRoute>} />
-                        <Route
-                          path="/admin/users"
-                          element={
-                            <AdminRoute>
-                              <AdminUsers />
-                            </AdminRoute>
-                          }
-                        />
-                        <Route
-                          path="/admin/returns"
-                          element={
-                            <AdminRoute>
-                              <AdminReturns />
-                            </AdminRoute>
-                          }
-                        />
-                        <Route
-                          path="/admin/settings"
-                          element={
-                            <AdminRoute>
-                              <AdminSettings />
-                            </AdminRoute>
-                          }
-                        />
+                      {/* Admin routes */}
+                      <Route
+                        path="/admin"
+                        element={
+                          <AdminRoute>
+                            <AdminDashboard />
+                          </AdminRoute>
+                        }
+                      />
+                      <Route
+                        path="/admin/products"
+                        element={
+                          <AdminRoute>
+                            <AdminProducts />
+                          </AdminRoute>
+                        }
+                      />
+                      <Route
+                        path="/admin/orders"
+                        element={
+                          <AdminRoute>
+                            <AdminOrders />
+                          </AdminRoute>
+                        }
+                      />
+                      <Route path="/admin/notifications" element={<AdminRoute> <AdminNotifications /></AdminRoute>} />
+                      <Route
+                        path="/admin/users"
+                        element={
+                          <AdminRoute>
+                            <AdminUsers />
+                          </AdminRoute>
+                        }
+                      />
+                      <Route
+                        path="/admin/returns"
+                        element={
+                          <AdminRoute>
+                            <AdminReturns />
+                          </AdminRoute>
+                        }
+                      />
+                      <Route
+                        path="/admin/settings"
+                        element={
+                          <AdminRoute>
+                            <AdminSettings />
+                          </AdminRoute>
+                        }
+                      />
 
-                        <Route path="*" element={<NotFound />} />
-                      </Routes>
-                    </main>
-                    <Footer />
-                    <Toaster
-                      position="top-right"
-                      toastOptions={{
-                        className: "dark:bg-gray-800 dark:text-white",
-                      }}
-                    />
-                  </div>
-                </Router>
-              </CartProvider>
-            </AuthProvider>
-          </ThemeProvider>
-        </GoogleOAuthProvider>
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </main>
+                  <Footer />
+                  <Toaster
+                    position="top-right"
+                    toastOptions={{
+                      className: "dark:bg-gray-800 dark:text-white",
+                    }}
+                  />
+                </div>
+              </Router>
+            </CartProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </SEOProvider>
     </HelmetProvider>
+  );
+
+  // Conditionally wrap with GoogleOAuthProvider only if client ID exists
+  return googleClientId ? (
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <AppContent />
+    </GoogleOAuthProvider>
+  ) : (
+    <AppContent />
   );
 }
 
