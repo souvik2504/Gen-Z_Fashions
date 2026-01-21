@@ -47,10 +47,13 @@ const ProductCard = ({ product }) => {
         <Link to={`/products/${product._id}`}>
           <div className="relative w-full h-64 overflow-hidden bg-gray-100 dark:bg-gray-700">
             <img
-              src={product.images?.[0] || '/placeholder-tshirt.jpg'}
-              alt={`${product.name} - Premium T-Shirt`}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              loading="lazy"
+              src={
+                product.images?.[0]
+                  ? `${process.env.REACT_APP_API_URL}${product.images[0]}`
+                  : '/placeholder-tshirt.jpg'
+              }
+              alt={product.name}
+              className="w-full h-full object-cover"
               onError={(e) => {
                 e.target.src = '/placeholder-tshirt.jpg';
               }}

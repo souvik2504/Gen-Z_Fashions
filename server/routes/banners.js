@@ -72,10 +72,18 @@ router.post('/', [auth, admin, upload.single('image')], async (req, res) => {
     if (!title) {
       return res.status(400).json({ message: 'Banner title is required' });
     }
+    const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+
+    // const banner = new Banner({
+    //   title: title.trim(),
+    //   imageUrl: `/uploads/banners/${req.file.filename}`,
+    //   linkUrl: linkUrl || '#',
+    //   order: parseInt(order) || 0
+    // });
 
     const banner = new Banner({
       title: title.trim(),
-      imageUrl: `/uploads/banners/${req.file.filename}`,
+      imageUrl: `${baseUrl}/uploads/banners/${req.file.filename}`,
       linkUrl: linkUrl || '#',
       order: parseInt(order) || 0
     });

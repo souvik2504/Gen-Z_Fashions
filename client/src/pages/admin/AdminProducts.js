@@ -418,8 +418,20 @@ const AdminProducts = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg overflow-hidden">
-                            <img
+                            {/* <img
                               src={product.images?.[0] || '/placeholder-tshirt.jpg'}
+                              alt={product.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                e.target.src = '/placeholder-tshirt.jpg';
+                              }}
+                            /> */}
+                            <img
+                              src={
+                                product.images?.[0]
+                                  ? `${process.env.REACT_APP_API_URL}${product.images[0]}`
+                                  : '/placeholder-tshirt.jpg'
+                              }
                               alt={product.name}
                               className="w-full h-full object-cover"
                               onError={(e) => {

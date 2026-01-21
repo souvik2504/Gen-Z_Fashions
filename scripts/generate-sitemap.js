@@ -1,12 +1,12 @@
 const fs = require('fs');
-const axios = require('axios');
+const API = require('../client/src/api.js'); // Use the configured API instance
 
 const generateSitemap = async () => {
   const baseUrl = 'https://yourdomain.com'; // Replace with your domain
   
   try {
     // Fetch products from API
-    const productsResponse = await axios.get(`${baseUrl}/api/products`);
+    const productsResponse = await API.get('/api/products');
     const products = productsResponse.data.products || [];
 
     const staticPages = [

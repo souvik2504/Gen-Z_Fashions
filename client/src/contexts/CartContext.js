@@ -1,7 +1,7 @@
 // Update client/src/contexts/CartContext.js
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import axios from 'axios';
+import API from '../api.js';
 import toast from 'react-hot-toast';
 
 const CartContext = createContext();
@@ -130,7 +130,7 @@ export const CartProvider = ({ children }) => {
       }
       
       // Fetch cart from database
-      const response = await axios.get('/api/cart', {
+      const response = await API.get('/api/cart', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       
@@ -155,7 +155,7 @@ export const CartProvider = ({ children }) => {
         quantity: item.quantity
       }));
 
-      await axios.post('/api/cart/sync', {
+      await API.post('/api/cart/sync', {
         localCartItems: transformedItems
       }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -202,7 +202,7 @@ export const CartProvider = ({ children }) => {
         // Add to database cart
         console.log('🛒 Adding to database cart:', { product: product._id, size, color, quantity });
         
-        const response = await axios.post('/api/cart/add', {
+        const response = await API.post('/api/cart/add', {
           productId: product._id,
           size,
           color,
@@ -223,7 +223,7 @@ export const CartProvider = ({ children }) => {
             product: product._id,
             name: product.name,
             price: product.price,
-            image: product.images?.[0] || '/placeholder-tshirt.jpg',
+            image: product.images?.[0] || 'https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=No+Image',
             size,
             color,
             quantity
@@ -244,7 +244,7 @@ export const CartProvider = ({ children }) => {
             product: product._id,
             name: product.name,
             price: product.price,
-            image: product.images?.[0] || '/placeholder-tshirt.jpg',
+            image: product.images?.[0] || 'https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=No+Image',
             size,
             color,
             quantity
@@ -263,7 +263,7 @@ export const CartProvider = ({ children }) => {
         
         console.log('🗑️ Removing from database cart:', { productId, size, color });
         
-        const response = await axios.delete('/api/cart/remove', {
+        const response = await API.delete('/api/cart/remove', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
           data: { productId, size, color }
         });
@@ -301,7 +301,7 @@ export const CartProvider = ({ children }) => {
         
         console.log('🔄 Updating database cart:', { productId, size, color, quantity });
         
-        const response = await axios.put('/api/cart/update', {
+        const response = await API.put('/api/cart/update', {
           productId,
           size,
           color,
@@ -335,7 +335,7 @@ export const CartProvider = ({ children }) => {
       if (isAuthenticated) {
         console.log('🧹 Clearing database cart');
         
-        await axios.delete('/api/cart/clear', {
+        await API.delete('/api/cart/clear', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         

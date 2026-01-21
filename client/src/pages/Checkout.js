@@ -341,11 +341,11 @@ const Checkout = () => {
           };
 
           // Create order in database ONLY after payment success  
-          const orderResponse = await axios.post("/api/orders", orderData);
+          const orderResponse = await API.post("/api/orders", orderData);
           const createdOrder = orderResponse.data;
 
           // 🔥 STEP 4: Verify payment signature
-          const verifyResponse = await axios.post("/api/razorpay/verify-payment", {
+          const verifyResponse = await API.post("/api/razorpay/verify-payment", {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
@@ -430,7 +430,7 @@ const Checkout = () => {
     console.log("Extracted couponCode:", orderData.couponCode);
 
     // 🔥 FIX: Use the same endpoint as Razorpay orders
-    const response = await axios.post("/api/orders", orderData, {
+    const response = await API.post("/api/orders", orderData, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
 

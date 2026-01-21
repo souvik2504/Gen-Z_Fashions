@@ -109,7 +109,11 @@ const ReviewModal = ({ product, order, orderItem, onSubmit, onClose }) => {
           <div className="flex items-center space-x-4 mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
             <div className="flex-shrink-0 w-16 h-16 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
               <img
-                src={product.image || '/placeholder-tshirt.jpg'}
+                src={
+                  product.images?.[0]
+                    ? `${process.env.REACT_APP_API_URL}${product.images[0]}`
+                    : '/placeholder-tshirt.jpg'
+                }
                 alt={product.name}
                 className="w-full h-full object-cover"
                 onError={(e) => {
