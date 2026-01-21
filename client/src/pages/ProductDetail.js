@@ -766,7 +766,7 @@ const ReviewsSection = ({ productId }) => {
   const fetchReviews = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/reviews/product/${productId}`, {
+      const response = await API.get(`/api/reviews/product/${productId}`, {
         params: { sort: sortBy, limit: 50 } // Get more reviews for scrolling
       });
       setReviews(response.data.reviews || []);
@@ -780,7 +780,7 @@ const ReviewsSection = ({ productId }) => {
 
   const handleHelpfulVote = async (reviewId) => {
     try {
-      await axios.put(`/api/reviews/${reviewId}/helpful`);
+      await API.put(`/api/reviews/${reviewId}/helpful`);
       fetchReviews();
     } catch (error) {
       console.error("Error voting:", error);
