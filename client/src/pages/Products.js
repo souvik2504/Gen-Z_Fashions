@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api.js';
 import ProductCard from '../components/ProductCard';
 import PageLoader from '../components/PageLoader';
 import SEO from '../components/SEO';
@@ -49,7 +49,7 @@ const Products = () => {
       params.append('limit', '12');
       params.append('sortBy', sortBy);
 
-      const response = await axios.get(`/api/products?${params}`);
+      const response = await API.get(`/api/products?${params}`);
       setProducts(response.data.products);
       setTotalPages(response.data.totalPages);
     } catch (error) {

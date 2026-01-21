@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api.js';
 import toast from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
 import PageLoader from '../components/PageLoader';
@@ -84,7 +84,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/orders/myorders');
+      const response = await API.get('/api/orders/myorders');
       setOrders(response.data);
     } catch (error) {
       console.error('Error fetching orders:', error);
@@ -96,7 +96,7 @@ const Orders = () => {
 
   const fetchReviewedItems = async () => {
     try {
-      const response = await axios.get('/api/reviews/user-reviews');
+      const response = await API.get('/api/reviews/user-reviews');
       const reviewedOrderItems = response.data.map(review => review.orderItem);
       setReviewedItems(new Set(reviewedOrderItems));
     } catch (error) {
@@ -109,7 +109,7 @@ const Orders = () => {
       setLoadingDetails(true);
       setShowDetailsModal(true);
       
-      const response = await axios.get(`/api/orders/${orderId}`);
+      const response = await API.get(`/api/orders/${orderId}`);
       setSelectedOrder(response.data);
     } catch (error) {
       console.error('Error fetching order details:', error);
@@ -243,7 +243,7 @@ const Orders = () => {
         });
       }
 
-      const response = await axios.post('/api/reviews', formData, {
+      const response = await API.post('/api/reviews', formData, {
         headers: { 
           'Content-Type': 'multipart/form-data'
         }
@@ -299,7 +299,7 @@ const Orders = () => {
     setReturningOrder(orderToReturn._id);
     
     try {
-      await axios.put(`/api/orders/${orderToReturn._id}/return`, {
+      await API.put(`/api/orders/${orderToReturn._id}/return`, {
         reason: returnReason,
         details: returnDetails.trim()
       });
@@ -353,7 +353,7 @@ const Orders = () => {
     setCancellingOrder(orderToCancel._id);
     
     try {
-      await axios.put(`/api/orders/${orderToCancel._id}/cancel`, {
+      await API.put(`/api/orders/${orderToCancel._id}/cancel`, {
         reason: cancelReason
       });
       

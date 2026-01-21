@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api.js';
 import toast from 'react-hot-toast';
 import { Heart, Trash2, ShoppingCart, Plus } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
@@ -23,7 +23,7 @@ const Wishlist = () => {
   const fetchWishlistItems = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('/api/wishlist', {
+      const res = await API.get('/api/wishlist', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setWishlistItems(res.data);
@@ -37,7 +37,7 @@ const Wishlist = () => {
 
   const removeFromWishlist = async (productId) => {
     try {
-      await axios.delete(`/api/wishlist/${productId}`, {
+      await API.delete(`/api/wishlist/${productId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setWishlistItems((prev) => prev.filter(item => item.product._id !== productId));

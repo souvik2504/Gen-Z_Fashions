@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useGoogleLogin } from '@react-oauth/google';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import API from '../api.js';
 import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
 
 const Register = () => {
@@ -73,7 +73,7 @@ const Register = () => {
       
       try {
         // Send access token to backend (same endpoint as login)
-        const response = await axios.post('/api/auth/google-login', {
+        const response = await API.post('/api/auth/google-login', {
           access_token: tokenResponse.access_token
         });
 
@@ -81,8 +81,8 @@ const Register = () => {
           // Store token in localStorage
           localStorage.setItem('token', response.data.token);
           
-          // Set axios default header
-          axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+          // Set API default header
+          API.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
           
           toast.success(`Welcome to Gen-Z Fashions, ${response.data.user.name}!`);
           

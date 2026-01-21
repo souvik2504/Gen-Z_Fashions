@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../api.js';
 import toast from 'react-hot-toast';
 import { 
   Package, 
@@ -55,7 +55,7 @@ const AdminReturnsContent= () => {
   const fetchReturns = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/admin/returns', {
+      const response = await API.get('/api/admin/returns', {
         params: {
           page: currentPage,
           status: statusFilter,
@@ -76,7 +76,7 @@ const AdminReturnsContent= () => {
 
   const handleViewDetails = async (returnOrder) => {
     try {
-      const response = await axios.get(`/api/admin/orders/${returnOrder._id}/return-details`);
+      const response = await API.get(`/api/admin/orders/${returnOrder._id}/return-details`);
       setSelectedReturn(response.data);
       setShowDetailsModal(true);
     } catch (error) {
@@ -109,7 +109,7 @@ const AdminReturnsContent= () => {
 
     setUpdating(true);
     try {
-      await axios.put(`/api/admin/orders/${selectedReturn._id}/return-status`, {
+      await API.put(`/api/admin/orders/${selectedReturn._id}/return-status`, {
         returnStatus: newStatus,
         notes: statusNotes
       });
@@ -133,7 +133,7 @@ const AdminReturnsContent= () => {
 
     setUpdating(true);
     try {
-      await axios.put(`/api/admin/orders/${selectedReturn._id}/process-refund`, {
+      await API.put(`/api/admin/orders/${selectedReturn._id}/process-refund`, {
         refundAmount: parseFloat(refundAmount),
         refundMethod,
         transactionId,
@@ -156,7 +156,7 @@ const AdminReturnsContent= () => {
     const notes = prompt('Enter completion notes (optional):');
 
     try {
-      await axios.put(`/api/admin/orders/${orderId}/complete-refund`, {
+      await API.put(`/api/admin/orders/${orderId}/complete-refund`, {
         transactionId,
         notes
       });

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import axios from 'axios';
+import API from '../api.js';
 
 const AuthContext = createContext();
 
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       // Verify token and get user data
       fetchUser();
     } else {
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get('/api/auth/me');
+      const response = await API.get('/api/auth/me');
       dispatch({
         type: 'LOGIN_SUCCESS',
         payload: { user: response.data, token: state.token }
@@ -63,9 +63,9 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await API.post('/api/auth/login', { email, password });
       dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+      API.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
       return { success: true,
         message: 'Login successful',
         welcomeCoupon: response.data.welcomeCoupon
@@ -77,9 +77,9 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      const response = await axios.post('/api/auth/register', { name, email, password });
+      const response = await API.post('/api/auth/register', { name, email, password });
       dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+      API.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
       toast.success('Registration successful!');
       return { success: true };
     } catch (error) {
@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
-    delete axios.defaults.headers.common['Authorization'];
+    delete API.defaults.headers.common['Authorization'];
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../api.js';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/admin/AdminLayout';
 import PageLoader from '../../components/PageLoader';
@@ -17,7 +17,7 @@ const AdminUsers = () => {
   const fetchUsers = async()=>{
     setLoading(true);
     try{
-      const {data} = await axios.get(`/api/admin/users?page=${page}`);
+      const {data} = await API.get(`/api/admin/users?page=${page}`);
       setUsers(data.users);
       setPages(data.totalPages);
     }catch(err){ toast.error('Failed to load users'); }
@@ -27,7 +27,7 @@ const AdminUsers = () => {
   const toggleRole = async(id,currentRole)=>{
     const newRole = currentRole==='admin' ? 'user' : 'admin';
     try{
-      await axios.put(`/api/admin/users/${id}/role`,{role:newRole});
+      await API.put(`/api/admin/users/${id}/role`,{role:newRole});
       toast.success('Role updated');
       fetchUsers();
     }catch(err){ toast.error('Update failed'); }

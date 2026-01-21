@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../api.js';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { ChevronDown, Loader2, Eye, CheckCircle, XCircle, Clock } from 'lucide-react';
@@ -30,7 +30,7 @@ const AdminOrders = () => {
         ...(paymentFilter !== 'all' && { payment: paymentFilter })
       });
       
-      const { data } = await axios.get(`/api/admin/orders?${params}`);
+      const { data } = await API.get(`/api/admin/orders?${params}`);
       setOrders(data.orders);
       setPages(data.totalPages);
     } catch (err) {
@@ -43,7 +43,7 @@ const AdminOrders = () => {
   const changeStatus = async (id, newStatus) => {
     setUpdating(id);
     try {
-      await axios.put(`/api/admin/orders/${id}/status`, { status: newStatus });
+      await API.put(`/api/admin/orders/${id}/status`, { status: newStatus });
       toast.success('Status updated');
       fetchOrders();
     } catch (err) {
@@ -56,7 +56,7 @@ const AdminOrders = () => {
   const verifyPayment = async (id) => {
     setUpdating(id);
     try {
-      await axios.put(`/api/admin/orders/${id}/verify-payment`);
+      await API.put(`/api/admin/orders/${id}/verify-payment`);
       toast.success('Payment verified and order updated');
       fetchOrders();
     } catch (err) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../api.js';
 import AdminLayout from '../../components/admin/AdminLayout';
 import Loader from '../../components/Loader';
 import { 
@@ -30,7 +30,7 @@ const AdminDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get('/api/admin/stats');
+      const response = await API.get('/api/admin/stats');
       setStats(response.data);
     } catch (error) {
       console.error('Error fetching stats:', error);

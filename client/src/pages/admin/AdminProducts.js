@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../api.js';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/admin/AdminLayout';
 import ImageUpload from '../../components/admin/ImageUpload';
@@ -57,7 +57,7 @@ const AdminProducts = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/admin/products?page=${currentPage}&search=${searchTerm}`);
+      const response = await API.get(`/api/admin/products?page=${currentPage}&search=${searchTerm}`);
       setProducts(response.data.products);
       setTotalPages(response.data.totalPages);
     } catch (error) {
@@ -132,7 +132,7 @@ const AdminProducts = () => {
 
       toast.loading('AI analyzing product image...');
 
-      const response = await axios.post('/api/ai/analyze-product-image', aiFormData, {
+      const response = await API.post('/api/ai/analyze-product-image', aiFormData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -206,12 +206,12 @@ const AdminProducts = () => {
 
       let response;
       if (editingProduct) {
-        response = await axios.put(`/api/admin/products/${editingProduct._id}`, formDataObj, {
+        response = await API.put(`/api/admin/products/${editingProduct._id}`, formDataObj, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         toast.success('Product updated successfully');
       } else {
-        response = await axios.post('/api/admin/products', formDataObj, {
+        response = await API.post('/api/admin/products', formDataObj, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         toast.success('Product created successfully');
@@ -267,7 +267,7 @@ const AdminProducts = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`/api/products/${id}`);
+        await API.delete(`/api/products/${id}`);
         toast.success('Product deleted successfully');
         fetchProducts();
       } catch (error) {

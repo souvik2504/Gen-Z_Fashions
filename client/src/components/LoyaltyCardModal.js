@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { X, Gift, Copy, CheckCircle, Shirt } from 'lucide-react';
-import axios from 'axios';
+import API from '../api.js';
 // import { Shirt } from 'lucide-react';
 
 const MAX_STAMPS = 10;
@@ -27,7 +27,7 @@ const LoyaltyCardModal = ({ isOpen, onClose }) => {
   const fetchLoyaltyStatus = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/loyalty/status', {
+      const response = await API.get('/api/loyalty/status', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setLoyaltyData(response.data);
@@ -46,7 +46,7 @@ const LoyaltyCardModal = ({ isOpen, onClose }) => {
 
     setClaiming(true);
     try {
-      const response = await axios.post('/api/loyalty/claim', {}, {
+      const response = await API.post('/api/loyalty/claim', {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api.js';
 import toast from 'react-hot-toast';
 import { CreditCard, Smartphone, Building2, Wallet } from 'lucide-react';
 
@@ -25,7 +25,7 @@ const RazorpayCheckout = ({
       console.log('Creating Razorpay order...', { amount, orderId });
 
       // Create order on backend
-      const response = await axios.post('/api/razorpay/create-order', {
+      const response = await API.post('/api/razorpay/create-order', {
         amount,
         orderId,
         customerInfo
@@ -92,7 +92,7 @@ const RazorpayCheckout = ({
           
           try {
             // Verify payment on backend
-            const verifyResponse = await axios.post('/api/razorpay/verify-payment', {
+            const verifyResponse = await API.post('/api/razorpay/verify-payment', {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,

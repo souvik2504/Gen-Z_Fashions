@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api.js';
 import toast from 'react-hot-toast';
 import { CheckCircle, Upload, CreditCard } from 'lucide-react';
 
@@ -24,7 +24,7 @@ const PaymentCompletion = () => {
 
   const fetchOrder = async () => {
     try {
-      const response = await axios.get(`/api/orders/${orderId}`);
+      const response = await API.get(`/api/orders/${orderId}`);
       setOrder(response.data);
     } catch (error) {
       toast.error('Order not found');
@@ -58,7 +58,7 @@ const PaymentCompletion = () => {
         if (paymentDetails.screenshot) {
           formData.append('screenshot', paymentDetails.screenshot);
         }
-        await axios.post('/api/payment/verify-upi-payment', formData, {
+        await API.post('/api/payment/verify-upi-payment', formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
       } else if (order.paymentMethod === 'netbanking') {
@@ -67,7 +67,7 @@ const PaymentCompletion = () => {
           return;
         }
         formData.append('bankName', paymentDetails.bankName);
-        await axios.post('/api/payment/netbanking-payment', formData);
+        await API.post('/api/payment/netbanking-payment', formData);
       } else if (order.paymentMethod === 'qrcode') {
         if (!paymentDetails.paymentApp) {
           toast.error('Please select payment app used');
@@ -77,7 +77,7 @@ const PaymentCompletion = () => {
         if (paymentDetails.screenshot) {
           formData.append('screenshot', paymentDetails.screenshot);
         }
-        await axios.post('/api/payment/qrcode-payment', formData, {
+        await API.post('/api/payment/qrcode-payment', formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
       }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import PageLoader from '../components/PageLoader';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import API from '../api.js';
 import { User, Mail, MapPin, Save } from 'lucide-react';
 
 const Profile = () => {
@@ -31,7 +31,7 @@ const Profile = () => {
 const fetchProfile = async () => {
   try {
     setFetchLoading(true);
-    const response = await axios.get('/api/auth/profile', {
+    const response = await API.get('/api/auth/profile', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
     
@@ -87,7 +87,7 @@ const handleChange = (e) => {
 
     setLoading(true);
     try {
-      const response = await axios.put('/api/auth/profile', formData, {
+      const response = await API.put('/api/auth/profile', formData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
 

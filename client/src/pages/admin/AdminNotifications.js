@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../api.js';
 import AdminLayout from '../../components/admin/AdminLayout';
 import Loader from '../../components/Loader';
 import {
@@ -33,7 +33,7 @@ const AdminNotifications = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('/api/admin/notifications', {
+      const response = await API.get('/api/admin/notifications', {
         params: { status: filter },
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -56,7 +56,7 @@ const AdminNotifications = () => {
     setSendingId(notificationId);
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`/api/admin/notifications/${notificationId}/notify`, {}, {
+      await API.post(`/api/admin/notifications/${notificationId}/notify`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchNotifications();
@@ -71,7 +71,7 @@ const AdminNotifications = () => {
     if (!window.confirm('Delete this notification entry?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`/api/admin/notifications/${notificationId}`, {
+      await API.delete(`/api/admin/notifications/${notificationId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchNotifications();

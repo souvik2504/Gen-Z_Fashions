@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../api.js';
 import ProductCard from './ProductCard';
 import Loader from './Loader';
 
@@ -21,7 +21,7 @@ const RelatedProducts = ({ productId, currentProductName }) => {
       setError(null);
       
       console.log('Fetching related products for:', productId);
-      const response = await axios.get(`/api/products/${productId}/related`);
+      const response = await API.get(`/api/products/${productId}/related`);
       console.log('API Response:', response.data);
       
       setRelatedProducts(response.data);
