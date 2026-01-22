@@ -56,6 +56,7 @@ function App() {
   const AppContent = () => (
     <HelmetProvider>
       <SEOProvider>
+        <GoogleOAuthProvider clientId={googleClientId}>
         <ThemeProvider>
           <AuthProvider>
             <CartProvider>
@@ -172,18 +173,19 @@ function App() {
             </CartProvider>
           </AuthProvider>
         </ThemeProvider>
+        </GoogleOAuthProvider>
       </SEOProvider>
     </HelmetProvider>
   );
 
   // Conditionally wrap with GoogleOAuthProvider only if client ID exists
-  return googleClientId ? (
-    <GoogleOAuthProvider clientId={googleClientId}>
-      <AppContent />
-    </GoogleOAuthProvider>
-  ) : (
-    <AppContent />
-  );
+  // return googleClientId ? (
+  //   <GoogleOAuthProvider clientId={googleClientId}>
+  //     <AppContent />
+  //   </GoogleOAuthProvider>
+  // ) : (
+  //   <AppContent />
+  // );
 }
 
 export default App;
