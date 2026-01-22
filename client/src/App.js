@@ -179,13 +179,13 @@ function App() {
   );
 
   // Conditionally wrap with GoogleOAuthProvider only if client ID exists
-  // return googleClientId ? (
-  //   <GoogleOAuthProvider clientId={googleClientId}>
-  //     <AppContent />
-  //   </GoogleOAuthProvider>
-  // ) : (
-  //   <AppContent />
-  // );
+  return googleClientId ? (
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <AppContent />
+    </GoogleOAuthProvider>
+  ) : (
+    <AppContent />
+  );
 }
 
 export default App;
