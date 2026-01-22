@@ -4,7 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
-    <!-- Preconnect to external domains -->
+    <!-- DNS Prefetch & Preconnect to external domains -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://checkout.razorpay.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://checkout.razorpay.com">
     
@@ -21,8 +23,8 @@
     
     <title>Gen-Z Fashions - Premium T-Shirts Online</title>
     
-    <!-- Razorpay Script -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Load Razorpay Script Asynchronously to not block rendering -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js" async defer></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
